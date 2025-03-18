@@ -2,6 +2,27 @@
 
 This project implements a collaborative inference system that distributes deep neural network (DNN) computations between cloud and edge devices. By strategically partitioning neural networks, the system optimizes performance across different computing environments.
 
+## Running Instructions
+
+### Cloud Device:
+```
+python cloud_api.py -i 10.0.0.130 -p 9999 -d cpu
+```
+Parameters:
+- `-i`: IP address the server will listen on
+- `-p`: Port number the server will listen on
+- `-d`: Device to use for computation
+
+### Edge Device:
+```
+python edge_api.py -i 10.0.0.130 -p 9999 -d cpu -t alex_net
+```
+Parameters:
+- `-i`: IP address of the cloud server
+- `-p`: Port number of the cloud server
+- `-d`: Device to use for computation
+- `-t`: Model type to use
+
 ## Project Structure
 
 ```
