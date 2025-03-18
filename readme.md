@@ -2,27 +2,6 @@
 
 This project implements a collaborative inference system that distributes deep neural network (DNN) computations between cloud and edge devices. By strategically partitioning neural networks, the system optimizes performance across different computing environments.
 
-## Running Instructions
-
-### Cloud Device:
-```
-python cloud_api.py -i 10.0.0.130 -p 9999 -d cpu
-```
-Parameters:
-- `-i`: IP address the server will listen on
-- `-p`: Port number the server will listen on
-- `-d`: Device to use for computation
-
-### Edge Device:
-```
-python edge_api.py -i 10.0.0.130 -p 9999 -d cpu -t alex_net
-```
-Parameters:
-- `-i`: IP address of the cloud server
-- `-p`: Port number of the cloud server
-- `-d`: Device to use for computation
-- `-t`: Model type to use
-
 ## Project Structure
 
 ```
@@ -52,7 +31,8 @@ Cloud-Edge Collaborative Inference
 ├── monitor_server.py             # Bandwidth monitor server
 ├── monitor_test.py               # Bandwidth monitor test service
 ├── net_utils.py                  # Network utility functions
-└── predictor_utils.py            # Predictor functionality
+├── predictor_utils.py            # Predictor functionality
+└── single_inference.py           # Single-device inference (edge-only or cloud-only)
 ```
 
 ## Hardware Configuration
@@ -77,3 +57,44 @@ Cloud-Edge Collaborative Inference
 | apscheduler | 3.9.0 |
 | scikit   | 1.3.0   |
 | speedtest-cli | 2.1.3 |
+
+## Running Instructions
+
+### 1. Cloud-Edge Collaborative Inference:
+
+On Cloud Device:
+```
+python cloud_api.py -i 10.0.0.130 -p 9999 -d cpu
+```
+Parameters:
+- `-i`: IP address the server will listen on
+- `-p`: Port number the server will listen on
+- `-d`: Device to use for computation
+
+On Edge Device:
+```
+python edge_api.py -i 10.0.0.130 -p 9999 -d cpu -t alex_net
+```
+Parameters:
+- `-i`: IP address of the cloud server
+- `-p`: Port number of the cloud server
+- `-d`: Device to use for computation
+- `-t`: Model type to use
+
+### 2. Cloud-Only Inference:
+For running inference entirely on the cloud:
+```
+python single_inference.py -d cpu -t cloud
+```
+Parameters:
+- `-d`: Device type
+- `-t`: Set to "cloud" for cloud-only inference
+
+### 3. Edge-Only Inference:
+For running inference entirely on the edge:
+```
+python single_inference.py -d cpu -t edge
+```
+Parameters:
+- `-d`: Device type
+- `-t`: Set to "edge" for edge-only inference
