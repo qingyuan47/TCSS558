@@ -4,12 +4,6 @@ This project implements a collaborative inference system that distributes deep n
 
 ## Project Structure
 
-# Cloud-Edge Collaborative Inference
-
-This project implements a collaborative inference system that distributes deep neural network (DNN) computations between cloud and edge devices. By strategically partitioning neural networks, the system optimizes performance across different computing environments.
-
-## Project Structure
-
 ```
 Cloud-Edge Collaborative Inference
 ├── AlexNet.py                    # AlexNet model implementation
@@ -62,91 +56,3 @@ Cloud-Edge Collaborative Inference
 | apscheduler | 3.9.0 |
 | scikit   | 1.3.0   |
 | speedtest-cli | 2.1.3 |
-
-## Overview
-
-This project enables collaborative inference between cloud and edge devices:
-
-1. The system dynamically decides how to partition DNN models between edge and cloud devices
-2. Bandwidth monitoring tools track network conditions in real-time
-3. The predictor module forecasts performance for different partitioning strategies
-4. Various utility functions support visualization and data handling
-
-The project includes various model and latency data files:
-- Layer-specific models (*.pkl files): conv, dw_conv, linear, avgpool, maxpool, batchnorm
-- Corresponding latency measurements (*.csv files): conv_lat, dw_conv_lat, linear_lat, avgpool_lat, maxpool_lat, batchnorm_lat
-
-## Getting Started
-
-### Prerequisites
-
-- Make sure both cloud and edge environments match the specifications in the hardware and software tables above
-- Install all required Python packages listed in the software environment table
-
-### Setup
-
-1. Clone the repository to both cloud and edge devices
-2. Install dependencies:
-   ```
-   pip install torch==1.9.0 torchvision==0.10.0 pandas==1.3.4 numpy==1.20.3 apscheduler==3.9.0 scikit-learn==1.3.0 speedtest-cli==2.1.3 xlrd==2.0.1 xlwt==1.3.0
-   ```
-
-### Deployment
-
-Run the deployment script to prepare the system:
-
-```
-python deployment.py
-```
-
-### Running the System
-
-1. Start the cloud server:
-   ```
-   python cloud_api.py
-   ```
-
-2. Start the edge device:
-   ```
-   python edge_api.py
-   ```
-
-## Monitoring Network Conditions
-
-The system includes tools to monitor bandwidth between cloud and edge devices:
-
-1. Start the monitor server:
-   ```
-   python monitor_server.py
-   ```
-
-2. Start the monitor client:
-   ```
-   python monitor_client.py
-   ```
-
-3. Test bandwidth monitoring:
-   ```
-   python monitor_test.py
-   ```
-
-## DNN Models and Layer Analysis
-
-The system supports AlexNet architecture with detailed analysis of different neural network layers:
-
-- Convolutional layers (conv.pkl, conv_lat.csv)
-- Depthwise convolutional layers (dw_conv.pkl, dw_conv_lat.csv)
-- Linear/fully connected layers (linear.pkl, linear_lat.csv)
-- Average pooling layers (avgpool.pkl, avgpool_lat.csv)
-- Max pooling layers (maxpool.pkl, maxpool_lat.csv)
-- Batch normalization layers (batchnorm.pkl, batchnorm_lat.csv)
-
-The .pkl files contain trained models for predicting layer performance, while the .csv files contain latency measurements for each layer type.
-
-## Contributors
-
-[Your name/team members here]
-
-## License
-
-[Your license information here]
